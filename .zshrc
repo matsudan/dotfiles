@@ -28,6 +28,9 @@ export GOPATH="$HOME/ws/golang"
 # embulk
 export PATH="$HOME/.embulk/bin:$PATH"
 
+# stack
+export PATH=~/.local/bin:$PATH
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/hj3249/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/hj3249/google-cloud-sdk/path.zsh.inc'; fi
 
@@ -59,3 +62,4 @@ setopt EXTENDED_HISTORY
 # grobal alias
 alias ll='ls -lG'
 alias g='git'
+alias v='vim'
