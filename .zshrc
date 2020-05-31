@@ -1,10 +1,11 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-if [ $SHLVL = 1 ]; then
-  tmux
-fi
+# if [ $SHLVL = 1 ]; then
+#   tmux
+# fi
 
 # git
+export PATH="/usr/local/bin:${PATH}"
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
@@ -59,7 +60,7 @@ setopt hist_ignore_dups
 
 setopt EXTENDED_HISTORY
 
-# grobal alias
+# global alias
 alias ll='ls -lG'
 alias g='git'
 alias v='vim'
