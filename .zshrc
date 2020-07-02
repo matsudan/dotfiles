@@ -18,11 +18,6 @@ zstyle ':vcs_info:git:*' formats '%b'
 if [[ -s /Users/hj3249/.nvm/nvm.sh ]];
 then source /Users/hj3249/.nvm/nvm.sh; fi
 
-# goenv
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/bin:$PATH"
-eval "$(goenv init -)"
-
 # golang
 export GOPATH="$HOME/ws/golang"
 
@@ -42,10 +37,26 @@ if [ -f '/Users/hj3249/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/hj
 autoload -U colors; colors
 
 # prompt setting
-NORM="$%F{white}(*'-')$"
-MAGAO="$%F{white}('-')$"
+PROMPT=$'`command_status_check $?`:$ '
 
-PROMPT="%(?.$NORM.$MAGAO)"
+function command_status_check {
+    local color face suffix
+    suffix='%{'${reset_color}'%}'
+    if [ $1 = 0 ]
+    then
+        color='%{'${fg[cyan]}'%}'
+        face="ξ(*'-')ξ"
+    else
+        color='%{'${fg[magenta]}'%}'
+        face="ξ(*-~-)ξ"
+    fi
+    echo ${color}${face}${suffix}
+}
+
+function command_not_found_handler {
+    echo "${fg[blue]}ξ(*'-\`)ξ$reset_color ${fg[red]}$0$reset_color これは知りませんわぁ"
+    return 127
+}
 
 # history
 # save dest
