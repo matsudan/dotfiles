@@ -45,16 +45,16 @@ function command_status_check {
     if [ $1 = 0 ]
     then
         color='%{'${fg[cyan]}'%}'
-        face="ξ(*'ワ')ξ"
+        face="ξ*'ワ')ξ"
     else
         color='%{'${fg[magenta]}'%}'
-        face="ξ(*-~-)ξ"
+        face="ξ*-~-)ξ"
     fi
     echo ${color}${face}${suffix}
 }
 
 function command_not_found_handler {
-    echo "${fg[blue]}ξ(*'-\`)ξ$reset_color ${fg[red]}$0$reset_color これは知りませんわぁ"
+    echo "${fg[blue]}ξ*'-\`)ξ$reset_color ${fg[red]}$0$reset_color これは知りませんわぁ"
     return 127
 }
 
