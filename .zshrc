@@ -45,7 +45,7 @@ function command_status_check {
     if [ $1 = 0 ]
     then
         color='%{'${fg[cyan]}'%}'
-        face="ξ(*'-')ξ"
+        face="ξ(*'ワ')ξ"
     else
         color='%{'${fg[magenta]}'%}'
         face="ξ(*-~-)ξ"
