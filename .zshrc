@@ -54,7 +54,7 @@ function command_status_check {
 }
 
 function command_not_found_handler {
-    echo "${fg[blue]}ξ*'-\`)ξ$reset_color ${fg[red]}$0$reset_color これは知りませんわぁ"
+    echo "${fg[blue]}ξ*'-\`)ξ$reset_color ${fg[red]}$0$reset_color それは知らないですわぁ"
     return 127
 }
 
