@@ -75,3 +75,4 @@ setopt EXTENDED_HISTORY
 alias ll='ls -lG'
 alias g='git'
 alias v='vim'
+alias gst='git status'
