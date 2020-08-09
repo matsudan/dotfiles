@@ -72,7 +72,12 @@ setopt hist_ignore_dups
 setopt EXTENDED_HISTORY
 
 # global alias
+alias sz='source ~/.zshrc'
 alias ll='ls -lG'
-alias g='git'
 alias v='vim'
+
+## git
+alias g='git'
 alias gst='git status'
+alias gph='git push origin HEAD'
+alias gch='git checkout'
