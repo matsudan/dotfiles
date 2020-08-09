@@ -79,5 +79,7 @@ alias v='vim'
 ## git
 alias g='git'
 alias gst='git status'
+alias ga='git add'
+alias gcom='git commit -m'
 alias gph='git push origin HEAD'
 alias gch='git checkout'
