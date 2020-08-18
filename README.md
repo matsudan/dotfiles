@@ -7,9 +7,9 @@
 ## setup
 
 ```console
-cd dotfiles
+$ cd dotfiles
 ```
 
 ```console
-./setup.sh
+$ ./setup.sh
 ```
