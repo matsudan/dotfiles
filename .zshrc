@@ -85,3 +85,6 @@ alias gph='git push origin HEAD'
 alias gsw='git switch'
 alias gswc='git switch -c'
 alias gpl='git pull'
+
+## xmd
+alias xmd='xmd_darwin_amd64'
