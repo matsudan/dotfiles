@@ -21,6 +21,9 @@ then source /Users/hj3249/.nvm/nvm.sh; fi
 # golang
 export GOPATH="$HOME/ws/golang"
 
+# rust
+export PATH=$HOME/.cargo/bin:$PATH
+
 # embulk
 export PATH="$HOME/.embulk/bin:$PATH"
 
