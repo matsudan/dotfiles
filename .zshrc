@@ -21,6 +21,9 @@ then source /Users/hj3249/.nvm/nvm.sh; fi
 # golang
 export GOPATH="$HOME/ws/golang"
 
+# rust
+export PATH=$HOME/.cargo/bin:$PATH
+
 # embulk
 export PATH="$HOME/.embulk/bin:$PATH"
 
@@ -85,4 +88,3 @@ alias gph='git push origin HEAD'
 alias gsw='git switch'
 alias gswc='git switch -c'
 alias gpl='git pull'
-
