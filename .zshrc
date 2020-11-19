@@ -30,6 +30,10 @@ export PATH="$HOME/.embulk/bin:$PATH"
 # stack
 export PATH=~/.local/bin:$PATH
 
+# gnu-getopt
+export PATH=/usr/local/opt/gnu-getopt/bin:$PATH
+
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/hj3249/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/hj3249/google-cloud-sdk/path.zsh.inc'; fi
 
@@ -88,3 +92,8 @@ alias gph='git push origin HEAD'
 alias gsw='git switch'
 alias gswc='git switch -c'
 alias gpl='git pull'
+# START: Added by Airflow Breeze autocomplete setup
+autoload compinit && compinit
+autoload bashcompinit && bashcompinit
+source ~/.bash_completion.d/breeze-complete
+# END: Added by Airflow Breeze autocomplete setup
