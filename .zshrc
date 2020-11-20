@@ -92,6 +92,7 @@ alias gph='git push origin HEAD'
 alias gsw='git switch'
 alias gswc='git switch -c'
 alias gpl='git pull'
+
 # START: Added by Airflow Breeze autocomplete setup
 autoload compinit && compinit
 autoload bashcompinit && bashcompinit
