@@ -98,3 +98,6 @@ autoload compinit && compinit
 autoload bashcompinit && bashcompinit
 source ~/.bash_completion.d/breeze-complete
 # END: Added by Airflow Breeze autocomplete setup
+
+# Starship
+eval "$(starship init zsh)"
