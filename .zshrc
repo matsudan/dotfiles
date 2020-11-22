@@ -15,8 +15,8 @@ RPROMPT=\$vcs_info_msg_0_
 zstyle ':vcs_info:git:*' formats '%b'
 
 # nvm
-if [[ -s /Users/hj3249/.nvm/nvm.sh ]];
-then source /Users/hj3249/.nvm/nvm.sh; fi
+if [[ -s $HOME/.nvm/nvm.sh ]];
+then source $HOME/.nvm/nvm.sh; fi
 
 # golang
 export GOPATH="$HOME/ws/golang"
@@ -35,10 +35,10 @@ export PATH=/usr/local/opt/gnu-getopt/bin:$PATH
 
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/hj3249/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/hj3249/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/hj3249/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/hj3249/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-cloud-sdk/completion.zsh.inc'; fi
 
 # color
 autoload -U colors; colors
