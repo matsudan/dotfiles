@@ -1,5 +1,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+typeset -U PATH
+
 # if [ $SHLVL = 1 ]; then
 #   tmux
 # fi
@@ -67,19 +69,15 @@ function command_not_found_handler {
 
 # history
 # save dest
-export HISTFILE=~/.zsh_history
-
-# number of hist
-export SAVEHIST=100000
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
 
 setopt share_history
-
 setopt hist_ignore_dups
+setopt extended_history
 
-setopt EXTENDED_HISTORY
-
-# global alias
-alias sz='source ~/.zshrc'
+# alias
 alias ll='ls -lG'
 alias v='vim'
 
@@ -92,6 +90,14 @@ alias gph='git push origin HEAD'
 alias gsw='git switch'
 alias gswc='git switch -c'
 alias gpl='git pull'
+alias gdi='git diff --color'
+alias gds='git diff --color --staged'
+alias glgg='git log --color --graph --decorate --oneline'
+alias glgs='git log --stat --color'
+
+## zsh
+alias vz='vim ~/dotfiles/.zshrc'
+alias sz='source ~/.zshrc'
 
 # START: Added by Airflow Breeze autocomplete setup
 autoload compinit && compinit
@@ -100,4 +106,4 @@ source ~/.bash_completion.d/breeze-complete
 # END: Added by Airflow Breeze autocomplete setup
 
 # Starship
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
