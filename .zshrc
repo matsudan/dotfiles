@@ -1,7 +1,5 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-typeset -U PATH
-
 # if [ $SHLVL = 1 ]; then
 #   tmux
 # fi
@@ -97,6 +95,7 @@ alias glgs='git log --stat --color'
 
 ## zsh
 alias vz='vim ~/dotfiles/.zshrc'
+alias rz='rm ~/.zshrc && sh ~/dotfiles/setup.sh'
 alias sz='source ~/.zshrc'
 
 # START: Added by Airflow Breeze autocomplete setup
@@ -107,3 +106,14 @@ source ~/.bash_completion.d/breeze-complete
 
 # Starship
 # eval "$(starship init zsh)"
+
+# peco
+function peco-history-selection() {
+    BUFFER=`history -n 1 | tail -r | awk '!a[$0]++' | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection
+
+typeset -U PATH
