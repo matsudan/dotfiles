@@ -12,7 +12,8 @@ precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 RPROMPT=\$vcs_info_msg_0_
 # PROMPT=\$vcs_info_msg_0_'%# '
-zstyle ':vcs_info:git:*' formats '%b'
+zstyle ':vcs_info:*' formats '[%b]'
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
 
 # nvm
 if [[ -s $HOME/.nvm/nvm.sh ]];
@@ -66,7 +67,6 @@ function command_not_found_handler {
 }
 
 # history
-# save dest
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
@@ -98,11 +98,13 @@ alias vz='vim ~/dotfiles/.zshrc'
 alias rz='rm ~/.zshrc && sh ~/dotfiles/setup.sh'
 alias sz='source ~/.zshrc'
 
-# START: Added by Airflow Breeze autocomplete setup
-autoload compinit && compinit
+autoload -U compinit
+compinit
 autoload bashcompinit && bashcompinit
 source ~/.bash_completion.d/breeze-complete
-# END: Added by Airflow Breeze autocomplete setup
+
+setopt auto_pushd
+setopt pushd_ignore_dups
 
 # Starship
 # eval "$(starship init zsh)"
