@@ -34,6 +34,10 @@ export PATH=~/.local/bin:$PATH
 # gnu-getopt
 export PATH=/usr/local/opt/gnu-getopt/bin:$PATH
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/path.zsh.inc'; fi
