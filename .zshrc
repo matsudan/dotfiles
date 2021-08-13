@@ -20,7 +20,7 @@ if [[ -s $HOME/.nvm/nvm.sh ]];
 then source $HOME/.nvm/nvm.sh; fi
 
 # golang
-export GOPATH="$HOME/ws/golang"
+export GOPATH="$HOME/go"
 
 # rust
 export PATH=$HOME/.cargo/bin:$PATH
@@ -39,6 +39,9 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
+
+# saml2aws
+export PATH="$GOPATH/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/path.zsh.inc'; fi
@@ -83,6 +86,9 @@ setopt extended_history
 # alias
 alias ll='ls -lG'
 alias v='vim'
+
+## saml2aws
+alias s2a="function(){eval $( $(command saml2aws) script --shell=bash --profile=$@);}"
 
 ## git
 alias g='git'
