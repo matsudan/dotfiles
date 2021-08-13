@@ -87,6 +87,13 @@ setopt extended_history
 alias ll='ls -lG'
 alias v='vim'
 
+## docker
+alias d='docker'
+alias dsp='docker system prune'
+alias dvp='docker volume prune'
+alias dc='docker-compose'
+alias dcu='docker-compose up'
+
 ## saml2aws
 alias s2a="function(){eval $( $(command saml2aws) script --shell=bash --profile=$@);}"
 
