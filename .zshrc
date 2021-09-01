@@ -43,6 +43,11 @@ eval "$(pyenv virtualenv-init -)"
 # saml2aws
 export PATH="$GOPATH/bin:$PATH"
 
+function s2a(){
+    saml2aws login --skip-prompt --profile=$@
+    eval $(saml2aws script --profile=$@)
+}
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/path.zsh.inc'; fi
 
@@ -93,9 +98,6 @@ alias dsp='docker system prune'
 alias dvp='docker volume prune'
 alias dc='docker　compose'
 alias dcu='docker　compose up'
-
-## saml2aws
-alias s2a="function(){eval $( $(command saml2aws) script --shell=bash --profile=$@);}"
 
 ## git
 alias g='git'
