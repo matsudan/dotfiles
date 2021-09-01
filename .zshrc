@@ -96,8 +96,8 @@ alias v='vim'
 alias d='docker'
 alias dsp='docker system prune'
 alias dvp='docker volume prune'
-alias dc='docker　compose'
-alias dcu='docker　compose up'
+alias dc='docker compose'
+alias dcu='docker compose up'
 
 ## git
 alias g='git'
