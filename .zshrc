@@ -109,8 +109,6 @@ alias glgg='git log --color --graph --decorate --oneline'
 alias glgs='git log --stat --color'
 
 ## zsh
-alias vz='vim ~/dotfiles/.zshrc'
-alias rz='rm ~/.zshrc && sh ~/dotfiles/setup.sh'
 alias sz='source ~/.zshrc'
 
 autoload -U compinit
