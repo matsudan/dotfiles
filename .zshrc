@@ -21,9 +21,6 @@ export GOPATH="$HOME/go"
 # rust
 export PATH=$HOME/.cargo/bin:$PATH
 
-# embulk
-export PATH="$HOME/.embulk/bin:$PATH"
-
 # stack
 export PATH=~/.local/bin:$PATH
 
@@ -119,13 +116,9 @@ alias sz='source ~/.zshrc'
 autoload -U compinit
 compinit
 autoload bashcompinit && bashcompinit
-#source ~/.bash_completion.d/breeze-complete
 
 setopt auto_pushd
 setopt pushd_ignore_dups
-
-# Starship
-# eval "$(starship init zsh)"
 
 # peco
 function peco-history-selection() {
