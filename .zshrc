@@ -122,12 +122,12 @@ setopt pushd_ignore_dups
 
 # peco
 function peco-history-selection() {
-    BUFFER=`history -n 1 | tail -r | awk '!a[$0]++' | peco`
+    BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER")
     CURSOR=$#BUFFER
-    zle reset-prompt
+    zle clear-screen
 }
 zle -N peco-history-selection
-bindkey '^R' peco-history-selection
+bindkey '^r' peco-history-selection
 
 typeset -U PATH
 
