@@ -1,9 +1,5 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# if [ $SHLVL = 1 ]; then
-#   tmux
-# fi
-
 # git
 export PATH="/usr/local/bin:${PATH}"
 autoload -Uz vcs_info
@@ -58,7 +54,8 @@ if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-clou
 autoload -U colors; colors
 
 # prompt setting
-PROMPT=$'`command_status_check $?`:$ '
+local p_cdir="%B%F{cyan}[%(5~|.../%2~|%~)]%f%b"
+PROMPT=$p_cdir$'`command_status_check $?`:$ '
 
 function command_status_check {
     local color face suffix
@@ -66,7 +63,7 @@ function command_status_check {
     if [ $1 = 0 ]
     then
         color='%{'${fg[cyan]}'%}'
-        face="ξ*'ワ')ξ"
+        face="ξ*'ﾜ')ξ"
     else
         color='%{'${fg[magenta]}'%}'
         face="ξ*-~-)ξ"
@@ -122,7 +119,7 @@ alias sz='source ~/.zshrc'
 autoload -U compinit
 compinit
 autoload bashcompinit && bashcompinit
-source ~/.bash_completion.d/breeze-complete
+#source ~/.bash_completion.d/breeze-complete
 
 setopt auto_pushd
 setopt pushd_ignore_dups
