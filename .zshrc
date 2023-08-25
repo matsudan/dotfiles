@@ -16,7 +16,11 @@ if [[ -s $HOME/.nvm/nvm.sh ]];
 then source $HOME/.nvm/nvm.sh; fi
 
 # golang
-export GOPATH="$HOME/go"
+case `uname` in
+  Linux)
+    export PATH=$PATH:/usr/local/go/bin
+  ;;
+esac
 
 # rust
 export PATH=$HOME/.cargo/bin:$PATH
