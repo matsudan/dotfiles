@@ -1,15 +1,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# git
 export PATH="/usr/local/bin:${PATH}"
-autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
-RPROMPT=\$vcs_info_msg_0_
-# PROMPT=\$vcs_info_msg_0_'%# '
-zstyle ':vcs_info:*' formats '[%b]'
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
 
 # nvm
 if [[ -s $HOME/.nvm/nvm.sh ]];
@@ -54,9 +46,16 @@ if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-clou
 # color
 autoload -U colors; colors
 
+function parse_git_branch() {
+    git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
+}
+
+COLOR_DEF=$'%f'
+COLOR_GIT=$'%F{39}'
+
 # prompt setting
 local p_cdir="%B%F{cyan}[%(5~|.../%2~|%~)]%f%b"
-PROMPT=$p_cdir$'`command_status_check $?`:$ '
+PROMPT=$p_cdir$' `command_status_check $?` ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF} $ '
 
 function command_status_check {
     local color face suffix
