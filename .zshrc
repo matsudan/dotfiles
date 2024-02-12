@@ -111,6 +111,9 @@ alias gds='git diff --color --staged'
 alias glgg='git log --color --graph --decorate --oneline'
 alias glgs='git log --stat --color'
 
+## terraform
+alias tf='terraform'
+
 ## zsh
 alias sz='source ~/.zshrc'
 
