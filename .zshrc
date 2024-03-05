@@ -23,6 +23,9 @@ export PATH=~/.local/bin:$PATH
 # gnu-getopt
 export PATH=/usr/local/opt/gnu-getopt/bin:$PATH
 
+# rye
+source "$HOME/.rye/env"
+
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -55,7 +58,7 @@ COLOR_GIT=$'%F{39}'
 
 # prompt setting
 local p_cdir="%B%F{cyan}[%(5~|.../%2~|%~)]%f%b"
-PROMPT=$p_cdir$' `command_status_check $?` ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF} $ '
+PROMPT=$p_cdir$'`command_status_check $?`${COLOR_GIT}$(parse_git_branch)${COLOR_DEF} $ '
 
 function command_status_check {
     local color face suffix
