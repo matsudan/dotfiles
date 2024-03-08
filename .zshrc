@@ -26,12 +26,6 @@ export PATH=/usr/local/opt/gnu-getopt/bin:$PATH
 # rye
 source "$HOME/.rye/env"
 
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv virtualenv-init -)"
-
 # saml2aws
 export PATH="$GOPATH/bin:$PATH"
 
