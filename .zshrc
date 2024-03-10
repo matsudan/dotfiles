@@ -3,9 +3,8 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="/usr/local/bin:${PATH}"
 setopt prompt_subst
 
-# nvm
-if [[ -s $HOME/.nvm/nvm.sh ]];
-then source $HOME/.nvm/nvm.sh; fi
+# homebrew
+eval $(/opt/homebrew/bin/brew shellenv)
 
 # golang
 case `uname` in
@@ -27,18 +26,8 @@ export PATH=/usr/local/opt/gnu-getopt/bin:$PATH
 source "$HOME/.rye/env"
 
 # saml2aws
-export PATH="$GOPATH/bin:$PATH"
-
-function s2a(){
-    saml2aws login --skip-prompt --profile=$@
-    eval $(saml2aws script --profile=$@)
-}
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-cloud-sdk/completion.zsh.inc'; fi
+eval "$(saml2aws --completion-script-zsh)"
+# alias s2a="function(){eval $( $(command saml2aws) script --shell=bash --profile=$@);}"
 
 # color
 autoload -U colors; colors
@@ -132,8 +121,12 @@ bindkey '^r' peco-history-selection
 
 typeset -U PATH
 
-# nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # op
 eval "$(op completion zsh)"; compdef _op op
+
+# gcloud cli
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/matsuda/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/matsuda/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/matsuda/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/matsuda/google-cloud-sdk/completion.zsh.inc'; fi
