@@ -99,6 +99,7 @@ alias glgs='git log --stat --color'
 alias grb='git rebase'
 alias grs='git reset'
 alias gss='git stash save'
+alias gsl='git stash list'
 alias gsa='git stash apply'
 
 ## terraform
