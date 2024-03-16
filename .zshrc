@@ -96,6 +96,10 @@ alias gdi='git diff --color'
 alias gds='git diff --color --staged'
 alias glgg='git log --color --graph --decorate --oneline'
 alias glgs='git log --stat --color'
+alias grb='git rebase'
+alias grs='git reset'
+alias gss='git stash save'
+alias gsa='git stash apply'
 
 ## terraform
 alias tf='terraform'
