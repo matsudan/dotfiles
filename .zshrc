@@ -115,14 +115,8 @@ autoload bashcompinit && bashcompinit
 setopt auto_pushd
 setopt pushd_ignore_dups
 
-# peco
-function peco-history-selection() {
-    BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER")
-    CURSOR=$#BUFFER
-    zle clear-screen
-}
-zle -N peco-history-selection
-bindkey '^r' peco-history-selection
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
 typeset -U PATH
 
@@ -135,3 +129,7 @@ if [ -f '/Users/matsuda/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/matsuda
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/matsuda/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/matsuda/google-cloud-sdk/completion.zsh.inc'; fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
