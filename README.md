@@ -6,10 +6,6 @@
 
 ## setup
 
-```console
-$ cd dotfiles
-```
-
-```console
-$ ./setup.sh
+```shell
+./setup.sh
 ```
