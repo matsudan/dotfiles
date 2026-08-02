@@ -1,36 +1,25 @@
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Must precede all PATH modifications to dedupe as entries are added
+typeset -U path PATH
 
-export PATH="/usr/local/bin:${PATH}"
 setopt prompt_subst
 
-# homebrew
-eval $(/opt/homebrew/bin/brew shellenv)
+# homebrew: sets the base PATH/MANPATH, so keep it before the entries below
+if [[ -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
 
 # golang
-case `uname` in
-  Linux)
-    export PATH=$PATH:/usr/local/go/bin
-  ;;
-esac
+if [[ $OSTYPE == linux* ]]; then
+    path=($path /usr/local/go/bin)
+fi
 
 # rust
-export PATH=$HOME/.cargo/bin:$PATH
+path=($HOME/.cargo/bin $path)
 
-# stack
-export PATH=~/.local/bin:$PATH
-
-# gnu-getopt
-export PATH=/usr/local/opt/gnu-getopt/bin:$PATH
-
-# rye
-source "$HOME/.rye/env"
-
-# saml2aws
-eval "$(saml2aws --completion-script-zsh)"
-# alias s2a="function(){eval $( $(command saml2aws) script --shell=bash --profile=$@);}"
-
-# color
-autoload -U colors; colors
+# user-local binaries (uv, etc.)
+path=($HOME/.local/bin $path)
 
 function parse_git_branch() {
     git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
@@ -45,20 +34,23 @@ PROMPT=$p_cdir$'`command_status_check $?`${COLOR_GIT}$(parse_git_branch)${COLOR_
 
 function command_status_check {
     local color face suffix
-    suffix='%{'${reset_color}'%}'
-    if [ $1 = 0 ]
+    suffix='%f'
+    if [[ $1 -eq 0 ]]
     then
-        color='%{'${fg[cyan]}'%}'
+        color='%F{cyan}'
         face="ξ*'ﾜ')ξ"
     else
-        color='%{'${fg[magenta]}'%}'
+        color='%F{magenta}'
         face="ξ*-~-)ξ"
     fi
     echo ${color}${face}${suffix}
 }
 
 function command_not_found_handler {
-    echo "${fg[blue]}ξ*'-\`)ξ$reset_color ${fg[red]}$0$reset_color それは知らないですわぁ"
+    # Raw ANSI, not %F: print -P would treat the backtick in the face as
+    # command substitution while prompt_subst is set
+    local blue=$'\e[34m' red=$'\e[31m' reset=$'\e[0m'
+    print -r -- "${blue}ξ*'-\`)ξ${reset} ${red}$0${reset} それは知らないですわぁ"
     return 127
 }
 
@@ -72,7 +64,12 @@ setopt hist_ignore_dups
 setopt extended_history
 
 # alias
-alias ll='ls -lG'
+# -G colorizes on BSD ls but means something else on GNU ls
+if [[ $OSTYPE == darwin* ]]; then
+    alias ll='ls -lG'
+else
+    alias ll='ls -l --color=auto'
+fi
 alias v='vim'
 
 ## docker
@@ -108,27 +105,39 @@ alias tf='terraform'
 ## zsh
 alias sz='source ~/.zshrc'
 
-autoload -U compinit
-compinit
-autoload bashcompinit && bashcompinit
+autoload -Uz compinit
+# Skip the security check when .zcompdump is under 24h old.
+# The glob must be an anonymous function argument: [[ ]] does not expand globs.
+() {
+    if (( $# )); then
+        compinit -C
+    else
+        compinit
+    fi
+} ${ZDOTDIR:-$HOME}/.zcompdump(Nmh-24)
+
+# Required by the gcloud completion script, which uses bash-style complete
+autoload -Uz bashcompinit && bashcompinit
 
 setopt auto_pushd
 setopt pushd_ignore_dups
 
 # Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
-
-typeset -U PATH
+if (( $+commands[fzf] )); then
+    source <(fzf --zsh)
+fi
 
 # op
-eval "$(op completion zsh)"; compdef _op op
+if (( $+commands[op] )); then
+    eval "$(op completion zsh)"; compdef _op op
+fi
 
 # gcloud cli
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/matsuda/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/matsuda/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/matsuda/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/matsuda/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
