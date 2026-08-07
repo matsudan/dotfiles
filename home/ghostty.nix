@@ -11,8 +11,7 @@
 
     settings = lib.mkMerge [
       {
-        # `ghostty +list-themes` に出る名前で指定する
-        theme = "Monokai Pro";
+        theme = "Moonfly";
         font-family = "JetBrains Mono";
 
         background-opacity = 0.90;

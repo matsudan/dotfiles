@@ -7,14 +7,12 @@
     vimAlias = true;
 
     plugins = with pkgs.vimPlugins; [
-      monokai-pro-nvim
+      vim-moonfly-colors
     ];
 
     initLua = ''
-      -- カラースキーム
       vim.opt.termguicolors = true
-      vim.cmd.colorscheme("monokai-pro")
-
+      vim.cmd.colorscheme("moonfly")
 
       vim.opt.fileencoding = "utf-8"
       vim.opt.ambiwidth = "double"
