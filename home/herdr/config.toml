@@ -1,0 +1,11 @@
+onboarding = false
+
+[theme]
+auto_switch = false
+
+[ui.toast]
+delivery = "herdr"
+delay_seconds = 1
+
+[ui.toast.herdr]
+position = "bottom-right"
