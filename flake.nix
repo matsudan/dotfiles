@@ -26,29 +26,21 @@
             inherit system;
             config.allowUnfree = true;
             overlays = [
-              # herdr だけを pkgs に足す。
-              # herdr.overlays.default は rust-overlay を composeExtensions で
-              # 巻き込むため、pkgs 全体に rust-overlay が載る。
-              # ここでは upstream がビルド済みの派生を差すだけに留める。
+              # herdr.overlays.default は rust-overlay を巻き込むので使わない
               (_final: _prev: { herdr = herdr.packages.${system}.default; })
             ];
           };
-          # home/*.nix から username を参照
           extraSpecialArgs = { inherit username; };
           modules = [ ./home ] ++ modules;
         };
     in
     {
       homeConfigurations = {
-        # macOS / Apple Silicon
-        #   home-manager switch --flake .#mac
         mac = mkHome {
           system = "aarch64-darwin";
           username = "matsuda";
         };
 
-        # Linux / x86_64
-        #   home-manager switch --flake .#linux
         linux = mkHome {
           system = "x86_64-linux";
           username = "matsuda";

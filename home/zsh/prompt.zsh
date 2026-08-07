@@ -1,6 +1,3 @@
-# プロンプト。home-manager の initContent で order 1000 に置かれる。
-# prompt_subst は programs.zsh.setOptions (order 950) で有効化済み。
-
 function parse_git_branch() {
     git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
 }

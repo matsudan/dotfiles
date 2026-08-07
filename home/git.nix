@@ -9,7 +9,6 @@
         email = "daaamatsun@gmail.com";
       };
 
-      # 既存 ~/.gitconfig から移設
       url."ssh://git@github.com/".insteadOf = "https://github.com/";
 
       init.defaultBranch = "main";

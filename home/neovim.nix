@@ -54,7 +54,5 @@
       vim.keymap.set("n", "<Down>", "gj")
       vim.keymap.set("n", "<Up>", "gk")
     '';
-
-    # plugins = with pkgs.vimPlugins; [ vim-nix telescope-nvim ];
   };
 }

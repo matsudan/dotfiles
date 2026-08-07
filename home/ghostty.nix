@@ -3,10 +3,7 @@
   programs.ghostty = {
     enable = true;
 
-    # nixpkgs の ghostty は meta.platforms が Linux のみ
-    # aarch64-darwin では meta.available = false
-    # macOS では package = null にして設定だけを管理し本体は.appを利用
-    # Linux では nixpkgs から入れる。
+    # nixpkgs の ghostty は Linux のみ。macOS は設定だけ管理して本体は公式 .app
     package = if pkgs.stdenv.isDarwin then null else pkgs.ghostty;
 
     settings = lib.mkMerge [
@@ -24,8 +21,7 @@
 
     enableZshIntegration = true;
 
-    # 以下は package = null と併用できない（モジュール側の assertion）。
-    # macOSは .app を使うので無効
+    # package = null と併用できない（モジュール側の assertion）
     installVimSyntax = false;
     installBatSyntax = false;
   };
