@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.neovim = {
     enable = true;
@@ -6,7 +6,16 @@
     viAlias = true;
     vimAlias = true;
 
+    plugins = with pkgs.vimPlugins; [
+      monokai-pro-nvim
+    ];
+
     initLua = ''
+      -- カラースキーム
+      vim.opt.termguicolors = true
+      vim.cmd.colorscheme("monokai-pro")
+
+
       vim.opt.fileencoding = "utf-8"
       vim.opt.ambiwidth = "double"
 
