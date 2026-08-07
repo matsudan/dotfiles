@@ -14,7 +14,7 @@
         theme = "Moonfly";
         font-family = "JetBrains Mono";
 
-        background-opacity = 0.90;
+        background-opacity = 0.80;
         background-blur = 50;
       }
       (lib.mkIf pkgs.stdenv.isDarwin {
