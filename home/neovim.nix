@@ -12,6 +12,9 @@
 
     initLua = ''
       vim.opt.termguicolors = true
+
+      vim.g.moonflyTransparent = true
+      vim.g.moonflyWinSeparator = 2
       vim.cmd.colorscheme("moonfly")
 
       vim.opt.fileencoding = "utf-8"
