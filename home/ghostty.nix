@@ -10,12 +10,20 @@
       {
         theme = "Moonfly";
         font-family = "JetBrains Mono";
+        font-size = 14;
+
+        adjust-cell-height = 5;
 
         background-opacity = 0.80;
         background-blur = 50;
+
+        window-padding-x = 10;
+        window-padding-y = 10;
+        window-padding-balance = true;
       }
       (lib.mkIf pkgs.stdenv.isDarwin {
         macos-option-as-alt = true;
+        macos-titlebar-style = "transparent";
       })
     ];
 
