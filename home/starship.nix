@@ -6,26 +6,27 @@ let
   capL = cp "e0b6"; # 左端の丸キャップ
   gitIcon = cp "e0a0"; # git branch
 
-  # moonfly のパレット
-  black = "#080808";
-  grey89 = "#e4e4e4";
-  crimson = "#ff5189";
-  coral = "#f09479";
-  khaki = "#c6c684";
-  turquoise = "#79dac8";
-  blue = "#80a0ff";
-  violet = "#cf87e8";
-  bay = "#4d5d8d";
+  # TokyoNight Moon のパレット（tokyonight.nvim の lua/tokyonight/colors/moon.lua）
+  bg = "#222436";
+  fg = "#c8d3f5";
+  red = "#ff757f";
+  cyan = "#86e1fc";
+  blue = "#82aaff";
+  blue1 = "#65bcff";
+  blue7 = "#394b70";
+  dark3 = "#545c7e";
+  fgDark = "#828bb8";
 
-  faceBg = turquoise;
-  faceBgErr = crimson;
-  faceFg = black;
-  dirBg = violet;
-  dirFg = black;
-  gitBg = coral;
-  gitFg = black;
-  timeBg = bay;
-  timeFg = grey89;
+  # 左から右へ明るい青→暗い青のグラデーション
+  faceBg = cyan;
+  faceBgErr = red; # 失敗だけ暖色で目立たせる
+  faceFg = bg;
+  dirBg = blue;
+  dirFg = bg;
+  gitBg = dark3;
+  gitFg = fg;
+  timeBg = blue7;
+  timeFg = fg;
 
   # `)` は starship のフォーマット構文と衝突するのでエスケープが必要
   faceOk = "ξ*'ﾜ'\\)ξ";
@@ -49,7 +50,7 @@ in
         "$time"
         "$line_break"
         "$cmd_duration"
-        "[❯ ](bold ${blue})"
+        "[❯ ](bold ${blue1})"
       ];
 
       # 終了ステータスで顔文字セグメント差替え
@@ -95,7 +96,7 @@ in
 
       cmd_duration = {
         min_time = 2000;
-        style = "fg:${khaki}";
+        style = "fg:${fgDark}";
         format = "[took $duration ]($style)";
       };
     };

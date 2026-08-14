@@ -7,15 +7,21 @@
     vimAlias = true;
 
     plugins = with pkgs.vimPlugins; [
-      vim-moonfly-colors
+      tokyonight-nvim
     ];
 
     initLua = ''
       vim.opt.termguicolors = true
 
-      vim.g.moonflyTransparent = true
-      vim.g.moonflyWinSeparator = 2
-      vim.cmd.colorscheme("moonfly")
+      -- transparent = true で背景色を設定させず Ghostty の background-opacity を通す
+      require("tokyonight").setup({
+        transparent = true,
+        styles = {
+          sidebars = "transparent",
+          floats = "transparent",
+        },
+      })
+      vim.cmd.colorscheme("tokyonight-moon")
 
       vim.opt.fileencoding = "utf-8"
       vim.opt.ambiwidth = "double"

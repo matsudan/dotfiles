@@ -8,7 +8,7 @@
 
     settings = lib.mkMerge [
       {
-        theme = "Moonfly";
+        theme = "TokyoNight Moon";
         font-family = "JetBrains Mono";
         font-size = 14;
 
