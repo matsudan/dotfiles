@@ -1,27 +1,4 @@
-function parse_git_branch() {
-    git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
-}
-
-COLOR_DEF=$'%f'
-COLOR_GIT=$'%F{39}'
-
-local p_cdir="%B%F{cyan}[%(5~|.../%2~|%~)]%f%b"
-PROMPT=$p_cdir$'`command_status_check $?`${COLOR_GIT}$(parse_git_branch)${COLOR_DEF} $ '
-
-function command_status_check {
-    local color face suffix
-    suffix='%f'
-    if [[ $1 -eq 0 ]]
-    then
-        color='%F{cyan}'
-        face="ξ*'ﾜ')ξ"
-    else
-        color='%F{magenta}'
-        face="ξ*-~-)ξ"
-    fi
-    echo ${color}${face}${suffix}
-}
-
+# PROMPT は starship が描画 （home/starship.nix）
 function command_not_found_handler {
     # Raw ANSI, not %F: print -P would treat the backtick in the face as
     # command substitution while prompt_subst is set

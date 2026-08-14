@@ -5,6 +5,7 @@
     ./ghostty.nix
     ./git.nix
     ./neovim.nix
+    ./starship.nix
     ./yazi.nix
     ./zsh.nix
   ];
