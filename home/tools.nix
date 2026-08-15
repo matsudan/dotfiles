@@ -1,12 +1,5 @@
-{ pkgs, ... }:
+{ ... }:
 {
-  home.packages = [
-    # nix 版は component updater が無効。追加するときはここに書いて switch
-    (pkgs.google-cloud-sdk.withExtraComponents [
-      pkgs.google-cloud-sdk.components.gcloud-crc32c
-    ])
-  ];
-
   programs.jq.enable = true;
 
   programs.fd.enable = true;
