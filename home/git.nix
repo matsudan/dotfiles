@@ -18,7 +18,6 @@
       rebase.autosquash = true;
       rerere.enabled = true;
       diff.colorMoved = "default";
-      core.editor = "nvim";
     };
 
     ignores = [
@@ -28,4 +27,6 @@
       "*.swp"
     ];
   };
+
+  programs.lazygit.enable = true;
 }

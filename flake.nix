@@ -16,11 +16,7 @@
     { nixpkgs, home-manager, herdr, ... }:
     let
       mkHome =
-        {
-          system,
-          username,
-          modules ? [ ],
-        }:
+        { system, username }:
         home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
             inherit system;
@@ -34,7 +30,7 @@
             inherit username;
             theme = import ./theme.nix;
           };
-          modules = [ ./home ] ++ modules;
+          modules = [ ./home ];
         };
     in
     {

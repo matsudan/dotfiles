@@ -1,11 +1,12 @@
 { pkgs, username, ... }:
 {
   imports = [
-    ./cli.nix
     ./ghostty.nix
     ./git.nix
+    ./herdr.nix
     ./neovim.nix
     ./starship.nix
+    ./tools.nix
     ./yazi.nix
     ./zsh.nix
   ];
@@ -18,7 +19,7 @@
   programs.home-manager.enable = true;
 
   home.sessionVariables = {
-    PAGER = "less -FRX";
+    PAGER = "less";
     LESS = "-FRX";
   };
 }

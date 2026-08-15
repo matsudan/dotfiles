@@ -1,19 +1,11 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   home.packages = [
     # nix 版は component updater が無効。追加するときはここに書いて switch
     (pkgs.google-cloud-sdk.withExtraComponents [
       pkgs.google-cloud-sdk.components.gcloud-crc32c
     ])
-
-    pkgs.herdr
   ];
-
-  # herdr 自身が config.toml を書き換えるため store へのリンクにできない。
-  # リポジトリの絶対パスを焼き込んでいるので clone 先を変えたら修正
-  xdg.configFile."herdr/config.toml".source =
-    config.lib.file.mkOutOfStoreSymlink
-      "${config.home.homeDirectory}/ws/matsudan/dotfiles/home/herdr/config.toml";
 
   programs.jq.enable = true;
 
@@ -27,8 +19,6 @@
       "--border"
     ];
   };
-
-  programs.lazygit.enable = true;
 
   programs.gh = {
     enable = true;
