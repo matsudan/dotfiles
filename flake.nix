@@ -30,7 +30,10 @@
               (_final: _prev: { herdr = herdr.packages.${system}.default; })
             ];
           };
-          extraSpecialArgs = { inherit username; };
+          extraSpecialArgs = {
+            inherit username;
+            theme = import ./theme.nix;
+          };
           modules = [ ./home ] ++ modules;
         };
     in

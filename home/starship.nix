@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, theme, ... }:
 let
   # Nerd Font のグリフは PUA でエディタや差分表示で壊れやすいためコードポイントから生成
   cp = hex: builtins.fromJSON ''"\u${hex}"'';
@@ -6,16 +6,17 @@ let
   capL = cp "e0b6"; # 左端の丸キャップ
   gitIcon = cp "e0a0"; # git branch
 
-  # TokyoNight Moon のパレット（tokyonight.nvim の lua/tokyonight/colors/moon.lua）
-  bg = "#222436";
-  fg = "#c8d3f5";
-  red = "#ff757f";
-  cyan = "#86e1fc";
-  blue = "#82aaff";
-  blue1 = "#65bcff";
-  blue7 = "#394b70";
-  dark3 = "#545c7e";
-  fgDark = "#828bb8";
+  inherit (theme.palette)
+    bg
+    fg
+    fgDark
+    red
+    cyan
+    blue
+    blue1
+    blue7
+    dark3
+    ;
 
   # 左から右へ明るい青→暗い青のグラデーション
   faceBg = cyan;

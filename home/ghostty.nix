@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, theme, ... }:
 {
   programs.ghostty = {
     enable = true;
@@ -8,7 +8,7 @@
 
     settings = lib.mkMerge [
       {
-        theme = "TokyoNight Moon";
+        theme = theme.ghostty;
         font-family = "JetBrains Mono";
         font-size = 14;
 
@@ -26,11 +26,5 @@
         macos-titlebar-style = "transparent";
       })
     ];
-
-    enableZshIntegration = true;
-
-    # package = null と併用できない（モジュール側の assertion）
-    installVimSyntax = false;
-    installBatSyntax = false;
   };
 }
