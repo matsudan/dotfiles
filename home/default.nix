@@ -5,6 +5,7 @@
     ./git.nix
     ./herdr.nix
     ./neovim.nix
+    ./opencode.nix
     ./starship.nix
     ./tools.nix
     ./yazi.nix
