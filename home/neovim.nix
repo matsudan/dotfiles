@@ -8,6 +8,7 @@
 
     plugins = with pkgs.vimPlugins; [
       tokyonight-nvim
+      gitsigns-nvim
     ];
 
     initLua = ''
@@ -54,6 +55,21 @@
       vim.keymap.set("n", "k", "gk")
       vim.keymap.set("n", "<Down>", "gj")
       vim.keymap.set("n", "<Up>", "gk")
+
+      vim.opt.signcolumn = "yes"
+
+      -- git の変更をサインカラムにバー表示
+      require("gitsigns").setup({
+        signs = {
+          add          = { text = "│" },
+          change       = { text = "│" },
+          delete       = { text = "_" },
+          topdelete    = { text = "‾" },
+          changedelete = { text = "~" },
+          untracked    = { text = "┆" },
+        },
+        current_line_blame = true,
+      })
     '';
   };
 }
