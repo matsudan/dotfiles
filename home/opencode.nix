@@ -20,6 +20,19 @@
           AWS_DOCUMENTATION_PARTITION = "aws";
         };
       };
+
+      mcp.terraform = {
+        type = "local";
+        command = [
+          "docker"
+          "run"
+          "-i"
+          "--rm"
+          "hashicorp/terraform-mcp-server:1.3.0"
+        ];
+        enabled = true;
+        timeout = 60000;
+      };
     };
 
     # 端末の背景色を継承し、Ghostty の透過を維持する
