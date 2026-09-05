@@ -9,6 +9,11 @@
     plugins = with pkgs.vimPlugins; [
       tokyonight-nvim
       gitsigns-nvim
+      (nvim-treesitter.withPlugins (parsers: [
+        parsers.markdown
+        parsers.markdown_inline
+      ]))
+      render-markdown-nvim
     ];
 
     initLua = ''
@@ -69,6 +74,11 @@
           untracked    = { text = "┆" },
         },
         current_line_blame = true,
+      })
+
+      require("render-markdown").setup({
+        -- ambiwidth=double では既定の Nerd Font サインが幅超過になる
+        sign = { enabled = false },
       })
     '';
   };
