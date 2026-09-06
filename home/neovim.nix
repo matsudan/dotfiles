@@ -6,6 +6,8 @@
     viAlias = true;
     vimAlias = true;
 
+    extraPackages = [ pkgs.ruff ];
+
     plugins = with pkgs.vimPlugins; [
       tokyonight-nvim
       gitsigns-nvim
@@ -84,6 +86,49 @@
         -- ambiwidth=double では既定の Nerd Font サインが幅超過になる
         sign = { enabled = false },
       })
+
+      vim.lsp.enable("ruff")
+
+      local ruff_format_group = vim.api.nvim_create_augroup("ruff_format_on_save", { clear = true })
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = ruff_format_group,
+        callback = function(args)
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          if client == nil or client.name ~= "ruff" then
+            return
+          end
+
+          vim.api.nvim_clear_autocmds({
+            group = ruff_format_group,
+            event = "BufWritePre",
+            buffer = args.buf,
+          })
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            group = ruff_format_group,
+            buffer = args.buf,
+            callback = function()
+              vim.lsp.buf.format({
+                bufnr = args.buf,
+                async = false,
+                filter = function(format_client)
+                  return format_client.id == client.id
+                end,
+              })
+            end,
+          })
+        end,
+      })
     '';
   };
+
+  xdg.configFile."nvim/lsp/ruff.lua".text = ''
+    return {
+      cmd = { "ruff", "server" },
+      filetypes = { "python" },
+      root_markers = { "pyproject.toml", "ruff.toml", ".ruff.toml", ".git" },
+      init_options = {
+        settings = {},
+      },
+    }
+  '';
 }
