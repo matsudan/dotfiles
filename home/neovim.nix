@@ -15,6 +15,7 @@
       nui-nvim
       plenary-nvim
       nvim-web-devicons
+      lualine-nvim
       (nvim-treesitter.withPlugins (parsers: [
         parsers.markdown
         parsers.markdown_inline
@@ -34,6 +35,8 @@
         },
       })
       vim.cmd.colorscheme("${theme.nvimColorscheme}")
+
+      require("lualine").setup()
 
       vim.opt.fileencoding = "utf-8"
       vim.opt.ambiwidth = "double"
