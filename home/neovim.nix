@@ -9,6 +9,10 @@
     plugins = with pkgs.vimPlugins; [
       tokyonight-nvim
       gitsigns-nvim
+      neo-tree-nvim
+      nui-nvim
+      plenary-nvim
+      nvim-web-devicons
       (nvim-treesitter.withPlugins (parsers: [
         parsers.markdown
         parsers.markdown_inline
