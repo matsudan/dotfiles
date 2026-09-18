@@ -38,6 +38,17 @@
 
       require("lualine").setup()
 
+      require("neo-tree").setup({
+        filesystem = {
+          filtered_items = {
+            hide_dotfiles = false,
+            hide_gitignored = false,
+            hide_hidden = false,
+            hide_ignored = false,
+          },
+        },
+      })
+
       vim.opt.fileencoding = "utf-8"
       vim.opt.ambiwidth = "double"
 
