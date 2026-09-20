@@ -43,6 +43,7 @@ in
       format = lib.concatStrings [
         "$character"
         "$directory"
+        "$python"
         "$git_branch"
         "$git_status"
         # git_branch / git_status はリポジトリ外で何も描かないため、
@@ -75,6 +76,11 @@ in
         truncation_length = 3;
         truncation_symbol = "…/";
         truncate_to_repo = true;
+      };
+
+      python = {
+        style = "fg:${gitFg} bg:${gitBg}";
+        format = "[( py:$virtualenv )]($style)";
       };
 
       git_branch = {
