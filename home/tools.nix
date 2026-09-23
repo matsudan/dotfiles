@@ -1,5 +1,7 @@
-{ ... }:
+{ pkgs, ... }:
 {
+  home.packages = [ pkgs.bun ];
+
   programs.jq.enable = true;
 
   programs.fd.enable = true;
