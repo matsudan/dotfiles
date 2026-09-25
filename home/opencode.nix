@@ -1,8 +1,9 @@
-{ ... }:
+{ opencodePackage, ... }:
 {
   # https://opencode.ai/docs/
   programs.opencode = {
     enable = true;
+    package = opencodePackage;
 
     settings = {
       autoupdate = false;

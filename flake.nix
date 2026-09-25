@@ -10,10 +10,18 @@
     };
 
     herdr.url = "github:ogulcancelik/herdr";
+
+    opencode.url = "github:anomalyco/opencode";
   };
 
   outputs =
-    { nixpkgs, home-manager, herdr, ... }:
+    {
+      nixpkgs,
+      home-manager,
+      herdr,
+      opencode,
+      ...
+    }:
     let
       mkHome =
         { system, username }:
@@ -28,6 +36,7 @@
           };
           extraSpecialArgs = {
             inherit username;
+            opencodePackage = opencode.packages.${system}.default;
             theme = import ./theme.nix;
           };
           modules = [ ./home ];
