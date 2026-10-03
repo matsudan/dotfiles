@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
-  home.packages = [ pkgs.bun ];
+  home.packages = [
+    pkgs.bun
+    pkgs.pre-commit
+  ];
 
   programs.jq.enable = true;
 
