@@ -1,4 +1,9 @@
-{ pkgs, theme, ... }:
+{
+  lib,
+  pkgs,
+  theme,
+  ...
+}:
 {
   programs.neovim = {
     enable = true;
@@ -12,7 +17,7 @@
     ];
 
     plugins = with pkgs.vimPlugins; [
-      tokyonight-nvim
+      catppuccin-nvim
       gitsigns-nvim
       neo-tree-nvim
       nui-nvim
@@ -30,12 +35,48 @@
     initLua = ''
       vim.opt.termguicolors = true
 
-      -- transparent = true で背景色を設定させず Ghostty の background-opacity を通す
-      require("tokyonight").setup({
-        transparent = true,
-        styles = {
-          sidebars = "transparent",
-          floats = "transparent",
+      local p = ${lib.generators.toLua { } theme.palette}
+      local blend = require("catppuccin.utils.colors").blend
+      -- 灰色の段階は mocha と同じ比率で作る
+      local function gray(alpha)
+        return blend(p.fg, p.bg, alpha)
+      end
+
+      require("catppuccin").setup({
+        -- Ghostty の background-opacity を通す
+        transparent_background = true,
+        float = { transparent = true },
+        term_colors = true,
+        color_overrides = {
+          all = {
+            rosewater = p.fgDark,
+            flamingo = p.red,
+            pink = p.magenta,
+            mauve = p.magenta,
+            red = p.red,
+            maroon = p.red,
+            peach = p.orange,
+            yellow = p.yellow,
+            green = p.green,
+            teal = p.cyan,
+            sky = p.cyan,
+            sapphire = p.cyan,
+            blue = p.blue,
+            lavender = p.blue,
+
+            text = p.fg,
+            subtext1 = gray(0.89),
+            subtext0 = gray(0.78),
+            overlay2 = gray(0.67),
+            overlay1 = gray(0.55),
+            overlay0 = gray(0.45),
+            surface2 = gray(0.33),
+            surface1 = gray(0.22),
+            surface0 = gray(0.11),
+            base = p.bg,
+            mantle = blend(p.bg, "#000000", 0.8),
+            crust = blend(p.bg, "#000000", 0.57),
+          },
         },
       })
       vim.cmd.colorscheme("${theme.nvimColorscheme}")

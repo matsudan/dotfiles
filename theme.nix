@@ -1,22 +1,21 @@
-# 配色の単一ソース。flake.nix が extraSpecialArgs で各モジュールへ渡す。
-# パレットは tokyonight.nvim の lua/tokyonight/colors/ に準拠
-# （night.lua は storm.lua を継承して bg 系だけ上書きしている）。
-#
-# テーマを差し替えるときはこのファイルと、home/neovim.nix の
-# プラグイン指定および setup 呼び出し（プラグイン固有のため一般化できない）を直す。
+# 配色の単一ソース。パレットは Ghostty の Kolorit テーマに準拠
 {
-  ghostty = "TokyoNight Night";
-  nvimColorscheme = "tokyonight-night";
+  ghostty = "Kolorit";
+  nvimColorscheme = "catppuccin-mocha";
 
   palette = {
-    bg = "#1a1b26";
-    fg = "#c0caf5";
-    fgDark = "#a9b1d6";
-    red = "#f7768e";
-    cyan = "#7dcfff";
-    blue = "#7aa2f7";
-    blue1 = "#2ac3de";
-    blue7 = "#394b70";
-    dark3 = "#545c7e";
+    bg = "#1d1a1e";
+    fg = "#efecec";
+    fgDark = "#c7c7c7";
+    red = "#ff5b82";
+    green = "#47d7a1";
+    yellow = "#e8e562";
+    blue = "#5db4ee";
+    magenta = "#da6cda";
+    cyan = "#57e9eb";
+    orange = "#e1925c";
+    blue1 = "#57e9eb";
+    blue7 = "#30485c"; # blue を bg に 30% 混ぜた色
+    dark3 = "#504d51";
   };
 }
