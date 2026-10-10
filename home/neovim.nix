@@ -6,7 +6,10 @@
     viAlias = true;
     vimAlias = true;
 
-    extraPackages = [ pkgs.ruff ];
+    extraPackages = [
+      pkgs.ruff
+      pkgs.ripgrep
+    ];
 
     plugins = with pkgs.vimPlugins; [
       tokyonight-nvim
@@ -15,6 +18,7 @@
       nui-nvim
       plenary-nvim
       nvim-web-devicons
+      fzf-lua
       lualine-nvim
       (nvim-treesitter.withPlugins (parsers: [
         parsers.markdown
@@ -37,6 +41,15 @@
       vim.cmd.colorscheme("${theme.nvimColorscheme}")
 
       require("lualine").setup()
+
+      require("fzf-lua").setup()
+
+      -- herdr の prefix が ctrl+b なので、<C-b> などは使わず <leader> 起点にする
+      vim.g.mapleader = " "
+      vim.keymap.set("n", "<leader>ff", "<Cmd>FzfLua files<CR>", { desc = "Find files" })
+      vim.keymap.set("n", "<leader>fb", "<Cmd>FzfLua buffers<CR>", { desc = "Buffers" })
+      vim.keymap.set("n", "<leader>fg", "<Cmd>FzfLua live_grep<CR>", { desc = "Live grep" })
+      vim.keymap.set("n", "<leader>fr", "<Cmd>FzfLua oldfiles<CR>", { desc = "Recent files" })
 
       require("neo-tree").setup({
         filesystem = {
