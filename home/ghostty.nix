@@ -14,7 +14,7 @@
 
         adjust-cell-height = 5;
 
-        background-opacity = 0.88;
+        background-opacity = 0.95;
         background-blur = 50;
 
         window-padding-x = 10;
