@@ -11,15 +11,17 @@
 
     herdr.url = "github:ogulcancelik/herdr";
 
-    opencode.url = "github:anomalyco/opencode";
+    # opencode だけ新しいバージョンに追従するための nixpkgs
+    # (nixos-26.05 は古く、upstream flake は darwin で codesign が失敗する)
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
 
   outputs =
     {
       nixpkgs,
+      nixpkgs-unstable,
       home-manager,
       herdr,
-      opencode,
       ...
     }:
     let
@@ -36,7 +38,7 @@
           };
           extraSpecialArgs = {
             inherit username;
-            opencodePackage = opencode.packages.${system}.default;
+            opencodePackage = nixpkgs-unstable.legacyPackages.${system}.opencode;
             theme = import ./theme.nix;
           };
           modules = [ ./home ];
