@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, uvPackage, ... }:
 {
   home.packages = [
     pkgs.bun
@@ -42,6 +42,7 @@
 
   programs.uv = {
     enable = true;
+    package = uvPackage;
     settings = {
       python-preference = "managed";
     };
