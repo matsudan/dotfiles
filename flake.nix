@@ -34,6 +34,34 @@
             overlays = [
               # herdr.overlays.default は rust-overlay を巻き込むので使わない
               (_final: _prev: { herdr = herdr.packages.${system}.default; })
+
+              # bun 1.4.4 は nixpkgs (stable/unstable とも) に未反映なため upstream の
+              # ビルド済みバイナリを使って override する。nixpkgs が 1.4.4 以上に
+              # 追従したらこの overlay は削除する
+              (_final: prev: {
+                bun = prev.bun.overrideAttrs (
+                  finalAttrs: _prevAttrs: {
+                    version = "1.4.4";
+                    __intentionallyOverridingVersion = true;
+                    passthru = _prevAttrs.passthru // {
+                      sources = {
+                        "aarch64-darwin" = prev.fetchurl {
+                          url = "https://github.com/oven-sh/bun/releases/download/bun-v${finalAttrs.version}/bun-darwin-aarch64.zip";
+                          hash = "sha256-wkDX8My5DCY6hJ/NsJt+5iYw2SE0jtaq/ahrnVd7xRA=";
+                        };
+                        "aarch64-linux" = prev.fetchurl {
+                          url = "https://github.com/oven-sh/bun/releases/download/bun-v${finalAttrs.version}/bun-linux-aarch64.zip";
+                          hash = "sha256-uqa7NvUdblhWHgK76oJQOKnfRU9nPW13bou/hvjHhQ4=";
+                        };
+                        "x86_64-linux" = prev.fetchurl {
+                          url = "https://github.com/oven-sh/bun/releases/download/bun-v${finalAttrs.version}/bun-linux-x64-baseline.zip";
+                          hash = "sha256-4ERutVmVdy65iUvrrppr42jZhai5Jx7hJEhvmUbu3XY=";
+                        };
+                      };
+                    };
+                  }
+                );
+              })
             ];
           };
           extraSpecialArgs = {
