@@ -5,6 +5,12 @@ elif [[ -x /usr/local/bin/brew ]]; then
     eval "$(/usr/local/bin/brew shellenv)"
 fi
 
+# Homebrew の curl を macOS 標準の curl より優先する
+# HOMEBREW_PREFIX は brew shellenv が設定する
+if [[ -n $HOMEBREW_PREFIX && -d $HOMEBREW_PREFIX/opt/curl/bin ]]; then
+    path=($HOMEBREW_PREFIX/opt/curl/bin $path)
+fi
+
 if [[ $OSTYPE == linux* ]]; then
     path=($path /usr/local/go/bin)
 fi
